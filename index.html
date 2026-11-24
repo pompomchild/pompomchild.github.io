@@ -18,7 +18,7 @@ body {
   font-family: ui-rounded, "SF Pro Rounded", "Arial Rounded MT Bold", "Nunito", system-ui, sans-serif;
 }
 main { max-width: 760px; margin: 0 auto; }
-h1 { margin: 0; font-size: clamp(30px, 7vw, 48px); font-weight: 800; line-height: 1.1; text-wrap: balance; }
+h1 { margin: 0; font-size: clamp(30px, 7vw, 48px); font-weight: 800; line-height: 1.2; text-wrap: balance; }
 p { margin: 12px 0 0; max-width: 46ch; font-size: clamp(16px, 3.6vw, 19px); font-weight: 600; line-height: 1.45; }
 .list { margin-top: clamp(24px, 5vw, 40px); display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
 .card {
@@ -45,8 +45,8 @@ p { margin: 12px 0 0; max-width: 46ch; font-size: clamp(16px, 3.6vw, 19px); font
 </head>
 <body>
 <main>
-  <h1>Pompom Child oyunları</h1>
-  <p>Küçük çocuklar için dokunarak oynanan altı oyun. Reklam ve satın alma yok.</p>
+  <h1 id="t">Pompom Child oyunları</h1>
+  <p id="l">Küçük çocuklar için dokunarak oynanan altı oyun. Reklam ve satın alma yok.</p>
   <nav class="list" aria-label="Oyunlar">
     <a class="card" href="ponpon-patlat/"><span class="dot" style="background:#FFC93C"></span><span class="name">Ponpon Patlat</span><span class="en" lang="en">Pop the Pompoms</span></a>
     <a class="card" href="renk-esle.html"><span class="dot" style="background:#FF6F61"></span><span class="name">Renk Eşle</span><span class="en" lang="en">Color Match</span></a>
@@ -56,5 +56,32 @@ p { margin: 12px 0 0; max-width: 46ch; font-size: clamp(16px, 3.6vw, 19px); font
     <a class="card" href="say-dokun.html"><span class="dot" style="background:#2EC4C6"></span><span class="name">Say ve Dokun</span><span class="en" lang="en">Count and Tap</span></a>
   </nav>
 </main>
+<script>
+// Sayfayı ziyaretçinin diline çevirir; betik çalışmazsa Türkçe hali kalır.
+(function () {
+  var all = {"tr": {"t": "Pompom Child oyunları", "l": "Küçük çocuklar için dokunarak oynanan altı oyun. Reklam ve satın alma yok.", "n": ["Ponpon Patlat", "Renk Eşle", "Hafıza Kartları", "Yün Yakala", "Sırayı Tekrarla", "Say ve Dokun"]}, "en": {"t": "Pompom Child games", "l": "Six tap-to-play games for young children. No ads and no purchases.", "n": ["Pop the Pompoms", "Color Match", "Memory Cards", "Catch the Yarn", "Repeat the Pattern", "Count and Tap"]}, "es": {"t": "Juegos de Pompom Child", "l": "Seis juegos táctiles para niños pequeños. Sin anuncios ni compras.", "n": ["Explota los pompones", "Empareja colores", "Cartas de memoria", "Atrapa la lana", "Repite la secuencia", "Cuenta y toca"]}, "pt": {"t": "Jogos do Pompom Child", "l": "Seis jogos de toque para crianças pequenas. Sem anúncios e sem compras.", "n": ["Estoure os pompons", "Combine as cores", "Jogo da memória", "Pegue a lã", "Repita a sequência", "Conte e toque"]}, "fr": {"t": "Jeux Pompom Child", "l": "Six jeux tactiles pour les jeunes enfants. Sans publicité ni achats.", "n": ["Éclate les pompons", "Associe les couleurs", "Cartes mémoire", "Attrape la laine", "Répète la séquence", "Compte et touche"]}, "de": {"t": "Pompom Child Spiele", "l": "Sechs Tippspiele für kleine Kinder. Ohne Werbung und ohne Käufe.", "n": ["Pompons platzen lassen", "Farben zuordnen", "Memo-Karten", "Wolle fangen", "Reihenfolge merken", "Zählen und tippen"]}, "it": {"t": "Giochi di Pompom Child", "l": "Sei giochi da toccare per bambini piccoli. Senza pubblicità né acquisti.", "n": ["Scoppia i pompon", "Abbina i colori", "Carte memoria", "Acchiappa la lana", "Ripeti la sequenza", "Conta e tocca"]}, "ru": {"t": "Игры Pompom Child", "l": "Шесть игр с касаниями для малышей. Без рекламы и покупок.", "n": ["Лопни помпоны", "Подбери цвет", "Карточки на память", "Поймай пряжу", "Повтори порядок", "Считай и нажимай"]}, "uk": {"t": "Ігри Pompom Child", "l": "Шість ігор з дотиками для малюків. Без реклами та покупок.", "n": ["Лусни помпони", "Добери колір", "Картки на пам’ять", "Спіймай пряжу", "Повтори порядок", "Рахуй і натискай"]}, "pl": {"t": "Gry Pompom Child", "l": "Sześć gier dotykowych dla małych dzieci. Bez reklam i zakupów.", "n": ["Przebij pompony", "Dopasuj kolory", "Karty pamięci", "Złap wełnę", "Powtórz kolejność", "Policz i dotknij"]}, "nl": {"t": "Pompom Child-spellen", "l": "Zes tikspellen voor jonge kinderen. Zonder advertenties en aankopen.", "n": ["Knal de pompons", "Kleuren zoeken", "Memorykaarten", "Vang de wol", "Herhaal de volgorde", "Tel en tik"]}, "id": {"t": "Game Pompom Child", "l": "Enam game sentuh untuk anak kecil. Tanpa iklan dan tanpa pembelian.", "n": ["Letuskan Pompom", "Cocokkan Warna", "Kartu Memori", "Tangkap Benang", "Ulangi Urutan", "Hitung dan Ketuk"]}, "vi": {"t": "Trò chơi Pompom Child", "l": "Sáu trò chơi chạm dành cho trẻ nhỏ. Không quảng cáo, không mua hàng.", "n": ["Làm nổ quả bông", "Ghép màu", "Thẻ trí nhớ", "Bắt cuộn len", "Lặp lại thứ tự", "Đếm và chạm"]}, "th": {"t": "เกม Pompom Child", "l": "เกมแตะหน้าจอ 6 เกมสำหรับเด็กเล็ก ไม่มีโฆษณาและไม่มีการซื้อ", "n": ["ป๊อปปอมปอม", "จับคู่สี", "การ์ดความจำ", "รับไหมพรม", "ทำตามลำดับ", "นับแล้วแตะ"]}, "ja": {"t": "Pompom Child のゲーム", "l": "ちいさなこどものためのタッチゲームが６つ。こうこくも かいものも ありません。", "n": ["ポンポンをわろう", "いろあわせ", "しんけいすいじゃく", "けいとキャッチ", "じゅんばんおぼえ", "かぞえてタッチ"]}, "ko": {"t": "Pompom Child 게임", "l": "어린이를 위한 터치 게임 여섯 가지. 광고와 구매가 없습니다.", "n": ["퐁퐁 터뜨리기", "색깔 맞추기", "기억력 카드", "털실 받기", "순서 따라 하기", "세고 누르기"]}, "zh": {"t": "Pompom Child 游戏", "l": "六款适合幼儿的点击小游戏。无广告，无内购。", "n": ["戳破毛球", "颜色配对", "记忆卡片", "接毛线球", "记住顺序", "数一数，点一点"]}, "ar": {"t": "ألعاب Pompom Child", "l": "ست ألعاب باللمس للأطفال الصغار. بلا إعلانات وبلا مشتريات.", "n": ["فرقع الكرات", "طابق الألوان", "بطاقات الذاكرة", "التقط الصوف", "كرّر الترتيب", "عدّ والمس"]}, "hi": {"t": "Pompom Child के खेल", "l": "छोटे बच्चों के लिए छूकर खेलने वाले छह खेल। कोई विज्ञापन नहीं, कोई खरीदारी नहीं।", "n": ["पॉमपॉम फोड़ो", "रंग मिलाओ", "याददाश्त के कार्ड", "ऊन पकड़ो", "क्रम दोहराओ", "गिनो और छुओ"]}, "bn": {"t": "Pompom Child-এর খেলা", "l": "ছোট শিশুদের জন্য ছুঁয়ে খেলার ছয়টি খেলা। কোনো বিজ্ঞাপন নেই, কেনাকাটাও নেই।", "n": ["পমপম ফাটাও", "রং মেলাও", "স্মৃতির কার্ড", "উল ধরো", "ক্রম মনে রাখো", "গোনো আর ছোঁও"]}};
+  var tags = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || 'en'];
+  try { var forced = new URLSearchParams(location.search).get('lang'); if (forced) tags = [forced]; } catch (e) {}
+  var lang = 'en';
+  for (var i = 0; i < tags.length; i++) {
+    var base = String(tags[i]).toLowerCase().split(/[-_]/)[0];
+    if (base === 'in') base = 'id';
+    if (all[base]) { lang = base; break; }
+  }
+  var t = all[lang];
+  document.documentElement.lang = lang === 'zh' ? 'zh-Hans' : lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.title = t.t;
+  document.getElementById('t').textContent = t.t;
+  document.getElementById('l').textContent = t.l;
+  var names = document.querySelectorAll('.card .name'), subs = document.querySelectorAll('.card .en');
+  for (var k = 0; k < names.length; k++) {
+    names[k].textContent = t.n[k];
+    names[k].style.alignSelf = 'center';
+    subs[k].hidden = true;
+    names[k].style.gridRow = 'span 2';
+  }
+})();
+</script>
 </body>
 </html>
